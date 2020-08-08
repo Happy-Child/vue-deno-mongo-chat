@@ -1,0 +1,29 @@
+// Colors
+$color-main: #ff5d2d;
+$color-dark: #000;
+
+// Transitions
+$transition-default: 0.3s ease;
+
+  // Font families
+$font-regular: "TTNorms-Regular", serif;
+
+// Typography
+$default-font: $font-regular;
+$font-size: 16px;
+$font-weight: 400;
+$line-height: 1.4;
+$letter-spacing: 0;
+$default-color-text: $color-dark;
+
+  // Grid
+$gutter: 15px;
+
+  // Breakpoints
+$breakpoints: (
+  'xl': 1290px,
+  'lg': 992px,
+  'md': 768px,
+  'sm': 576px,
+  'xs': 375px,
+);

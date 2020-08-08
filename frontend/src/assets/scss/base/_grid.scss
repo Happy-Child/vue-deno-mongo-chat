@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 0 $gutter;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: map-get($breakpoints, xl);
+}
+
+@include media-max(xl) {
+  max-width: map-get($breakpoints, lg);
+}
+
+@include media-max(lg) {
+  max-width: map-get($breakpoints, md);
+}
+
+@include media-max(md) {
+  max-width: map-get($breakpoints, sm);
+}
+
+@include media-max(sm) {
+  max-width: map-get($breakpoints, xs);
+}
+
+@include media-max(xs) {
+  max-width: 100%;
+}

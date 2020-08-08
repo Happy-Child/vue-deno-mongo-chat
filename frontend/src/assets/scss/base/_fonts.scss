@@ -1,0 +1,5 @@
+@import "../abstracts/mixins/font-face";
+
+@include font-face("TTNorms-Regular", "~@/assets/fonts/TTNorms/TTNorms-Regular")
+@include font-face("TTNorms-Medium", "~@/assets/fonts/TTNorms/TTNorms-Medium")
+@include font-face("TTNorms-Bold", "~@/assets/fonts/TTNorms/TTNorms-Bold")
