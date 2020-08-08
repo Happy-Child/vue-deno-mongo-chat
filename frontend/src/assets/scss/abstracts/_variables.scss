@@ -1,23 +1,37 @@
 // Colors
-$color-main: #ff5d2d;
-$color-dark: #000;
+$color-dark: #141A26;
+$color-dark-1: #181F2E;
+$color-dark-2: #202A3F;
+
+$color-gray: #EBF4FB;
+$color-gray-1: #D8E4ED;
+$color-gray-2: #8BA5B9;
+$color-gray-3: #3F5564;
+
+$color-yellow: #FFC148;
+$color-yellow-dark: #E29D16;
+
+$color-green: #34D859;
+$color-green-dark: #129B5E;
+
+$color-red: #FD4F4F;
+$color-red-dark: #D62E2E;
+
 
 // Transitions
-$transition-default: 0.3s ease;
+$transition-default: 0.2s ease;
 
   // Font families
 $font-regular: "TTNorms-Regular", serif;
+$font-medium: "TTNorms-Medium", serif;
+$font-bold: "TTNorms-Bold", serif;
 
 // Typography
-$default-font: $font-regular;
+$default-font: $font-medium;
 $font-size: 16px;
-$font-weight: 400;
 $line-height: 1.4;
 $letter-spacing: 0;
 $default-color-text: $color-dark;
-
-  // Grid
-$gutter: 15px;
 
   // Breakpoints
 $breakpoints: (

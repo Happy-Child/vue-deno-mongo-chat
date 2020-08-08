@@ -153,11 +153,6 @@ button {
   outline: none;
 }
 
-* {
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
 [disabled] {
   cursor: not-allowed;
 }
@@ -188,7 +183,10 @@ canvas {
 }
 
 * {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 input[type='number']::-webkit-outer-spin-button,
