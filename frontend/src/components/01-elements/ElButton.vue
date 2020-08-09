@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SVGIconLoader from "@/assets/images/svg/icon-loader.svg"
+import SVGIconLoader from "@/assets/images/svg/icon-loader.svg";
 
 export default {
   name: "ElButton",
@@ -101,7 +101,8 @@ export default {
   text-align: center;
   font-size: $font-size;
   min-height: px-to-em(54px, $font-size);
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -109,6 +110,7 @@ export default {
   transition: $transition-default all ease;
   background-color: $color-red;
   color: #fff;
+  font-family: $font-bold;
 
   &:hover,
   &:focus {
@@ -161,7 +163,8 @@ export default {
   }
 
   &_disabled,
-  &[disabled] {}
+  &[disabled] {
+  }
 
   &_loading {
     #{$block} {

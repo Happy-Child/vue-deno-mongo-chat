@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="el-tab"
-    v-on="$listeners"
-  >
+  <button class="el-tab" v-on="$listeners">
     <span class="el-tab__text">
       <slot></slot>
     </span>
@@ -45,6 +42,10 @@ export default {
 
   @include media-max(lg) {
     font-size: 20px;
+  }
+
+  @include media-max(sm) {
+    font-size: 18px;
   }
 
   &__text {

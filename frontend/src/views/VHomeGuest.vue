@@ -11,38 +11,52 @@
       </ElTab>
     </div>
 
-    <ElField
-      v-model="formData.username"
-      :placeholder="'test'"
-    />
+    <transition-group
+      tag="div"
+      class="wrap-forms"
+      :enter-active-class="durationEnter"
+      :leave-active-class="durationLeave"
+    >
+      <div v-if="curTab === 'registration'" key="form-registration" class="wrap-form">
+        <form class="form mx-auto">
+          <ElField
+            v-model="formData.username"
+            :placeholder="$t('labels.username')"
+          />
 
-    <ElField
-      v-model="formData.username"
-      :placeholder="'test'"
-      :errors="'errors errors errors errors errors errors errors errorserrors '"
-    />
+          <ElField v-model="formData.email" :placeholder="$t('labels.email')" />
 
-    <div class="buttons">
-      <ElButton theme="green">
-        test text
-      </ElButton>
+          <ElField
+            v-model="formData.password"
+            :placeholder="$t('labels.password')"
+          />
 
-      <ElButton :loading="btnLoading">
-        test text
-      </ElButton>
+          <ElField
+            v-model="formData.password_conformation"
+            :placeholder="$t('labels.password_conformation')"
+          />
 
-      <ElButton :disabled="true" theme="green">
-        test text
-      </ElButton>
+          <ElButton>
+            {{ $t("actions.confirm") }}
+          </ElButton>
+        </form>
+      </div>
 
-      <ElButton :to="{name: 'chat'}">
-        test text
-      </ElButton>
+      <div v-else-if="curTab === 'login'" key="form-login" class="wrap-form">
+        <form class="form mx-auto">
+          <ElField v-model="formData.email" :placeholder="$t('labels.email')" />
 
-      <ElButton href="https://www.google.com/">
-        test text
-      </ElButton>
-    </div>
+          <ElField
+            v-model="formData.password"
+            :placeholder="$t('labels.password')"
+          />
+
+          <ElButton>
+            {{ $t("actions.confirm") }}
+          </ElButton>
+        </form>
+      </div>
+    </transition-group>
   </div>
 </template>
 
@@ -66,7 +80,6 @@ export default {
 
   data() {
     return {
-      btnLoading: false,
       curTab: "registration",
       tabs: [
         {
@@ -81,28 +94,53 @@ export default {
         email: null,
         password: null,
         password_conformation: null
-      }
+      },
+      durationEnter: null,
+      durationLeave: null
     };
+  },
+
+  watch: {
+    curTab(cur, old) {
+      const curIndex = this.tabs.findIndex(({ slug }) => slug === cur);
+      const oldIndex = this.tabs.findIndex(({ slug }) => slug === old);
+
+      this.durationEnter = curIndex >= oldIndex ? "fadeInRight" : "fadeInLeft"
+      this.durationLeave = curIndex >= oldIndex ? "fadeOutLeft" : "fadeOutRight"
+    }
   },
 
   methods: {},
 
   computed: {},
-
-  mounted() {
-    setTimeout(() => {
-      this.btnLoading = true
-    }, 2000)
-  }
 };
 </script>
 
 <style lang="scss">
-.buttons {
-  padding: 40px;
-  .el-button {
+.page-home-guest {
+  display: flex;
+  flex-direction: column;
+
+  .wrap-forms {
     width: 100%;
-    margin-bottom: 40px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .wrap-form {
+    padding: 26vh 16px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 630px;
   }
 }
 
@@ -113,13 +151,8 @@ export default {
   overflow-y: auto;
 
   .el-tab {
-    flex-grow: 1;
-
-    @include media-min(md) {
-      width: 100%;
-      max-width: 50%;
-      flex-grow: 0;
-    }
+    width: 100%;
+    max-width: 50%;
   }
 }
 </style>

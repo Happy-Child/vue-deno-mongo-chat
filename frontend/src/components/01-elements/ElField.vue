@@ -53,9 +53,7 @@ export default {
 
   computed: {
     classes() {
-      return [
-        { "el-field_error": this.errors }
-      ]
+      return [{ "el-field_error": this.errors }];
     }
   }
 };

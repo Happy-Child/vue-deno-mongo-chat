@@ -1,4 +1,5 @@
 export default {
   registration: "Регистрация",
-  login: "Вход"
-}
+  login: "Вход",
+  confirm: "Подтвердить"
+};

@@ -1,4 +1,5 @@
 export default {
   registration: "Registration",
-  login: "Login"
-}
+  login: "Login",
+  confirm: "Confirm"
+};
