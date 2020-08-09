@@ -2,6 +2,9 @@
   &.placeholder {
     @content;
   }
+  &::placeholder {
+    @content;
+  }
   &:-moz-placeholder {
     @content;
   }

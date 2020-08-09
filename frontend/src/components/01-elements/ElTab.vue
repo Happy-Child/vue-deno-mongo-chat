@@ -33,7 +33,7 @@ export default {
 .el-tab {
   $block: &;
   font-size: 24px;
-  transition: all $transition-default;
+  transition: $transition-default all ease;
   cursor: pointer;
   display: flex;
   align-items: center;
