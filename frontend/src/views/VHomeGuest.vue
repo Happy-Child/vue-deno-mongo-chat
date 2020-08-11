@@ -1,5 +1,5 @@
 <template>
-  <div class="page page-home-guest">
+  <TDefault class="page-home-guest">
     <div v-if="tabs.length" class="tabs">
       <ElTab
         v-for="tab in tabs"
@@ -17,7 +17,11 @@
       :enter-active-class="durationEnter"
       :leave-active-class="durationLeave"
     >
-      <div v-if="curTab === 'registration'" key="form-registration" class="wrap-form">
+      <div
+        v-if="curTab === 'registration'"
+        key="form-registration"
+        class="wrap-form"
+      >
         <form class="form mx-auto">
           <ElField
             v-model="formData.username"
@@ -57,10 +61,11 @@
         </form>
       </div>
     </transition-group>
-  </div>
+  </TDefault>
 </template>
 
 <script>
+import TDefault from "@/components/03-templates/TDefault";
 import ElTab from "@/components/01-elements/ElTab";
 import ElField from "@/components/01-elements/ElField";
 import ElButton from "@/components/01-elements/ElButton";
@@ -71,7 +76,8 @@ export default {
   components: {
     ElTab,
     ElField,
-    ElButton
+    ElButton,
+    TDefault
   },
 
   props: {
@@ -105,14 +111,15 @@ export default {
       const curIndex = this.tabs.findIndex(({ slug }) => slug === cur);
       const oldIndex = this.tabs.findIndex(({ slug }) => slug === old);
 
-      this.durationEnter = curIndex >= oldIndex ? "fadeInRight" : "fadeInLeft"
-      this.durationLeave = curIndex >= oldIndex ? "fadeOutLeft" : "fadeOutRight"
+      this.durationEnter = curIndex >= oldIndex ? "fadeInRight" : "fadeInLeft";
+      this.durationLeave =
+        curIndex >= oldIndex ? "fadeOutLeft" : "fadeOutRight";
     }
   },
 
   methods: {},
 
-  computed: {},
+  computed: {}
 };
 </script>
 

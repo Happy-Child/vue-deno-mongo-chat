@@ -1,16 +1,14 @@
 <template>
-  <TAuthPage> </TAuthPage>
+  <div class="page">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-import TAuthPage from "@/components/03-templates/TAuthPage";
-
 export default {
-  name: "VHomeUser",
+  name: "TDefault",
 
-  components: {
-    TAuthPage
-  },
+  components: {},
 
   props: {
     prop: String

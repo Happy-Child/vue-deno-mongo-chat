@@ -5,8 +5,10 @@ import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
 import VueJSModal from "vue-js-modal";
+import Globals from "./mixins/Globals";
 
 Vue.use(VueJSModal, {});
+Vue.mixin(Globals);
 
 Vue.config.productionTip = false;
 
