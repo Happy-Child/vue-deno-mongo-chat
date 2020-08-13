@@ -1,14 +1,14 @@
 <template>
   <div class="el-image" :class="classes">
     <picture class="el-image__item el-image__wrap-tag">
-      <img class="el-image__tag" :src="src" :alt="alt">
+      <img class="el-image__tag" :src="src" :alt="alt" />
     </picture>
     <IconUserCircle class="el-image__item el-image__placeholder" />
   </div>
 </template>
 
 <script>
-  import IconUserCircle from "@/assets/images/svg/icon-user-circle.svg";
+import IconUserCircle from "@/assets/images/svg/icon-user-circle.svg";
 
 export default {
   name: "ElImage",

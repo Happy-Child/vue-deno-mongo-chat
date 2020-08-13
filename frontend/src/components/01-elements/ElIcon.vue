@@ -14,11 +14,11 @@ export default {
     size: {
       type: String,
       default: "xl"
-    },
+    }
   },
 
   data() {
-    return {}
+    return {};
   },
 
   methods: {},
@@ -28,7 +28,7 @@ export default {
       return [`el-image_${this.size}`];
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

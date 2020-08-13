@@ -1,7 +1,7 @@
 <template>
   <section class="p-navbar">
     <div class="p-navbar__header">
-      <router-link :to="{name: 'home'}" class="p-navbar__header-link">
+      <router-link :to="{ name: 'home' }" class="p-navbar__header-link">
         <ElImage />
       </router-link>
     </div>
@@ -13,9 +13,12 @@
           :key="link.slug"
           class="p-navbar__menu-list-item"
         >
-          <router-link :to="{name: link.slug}" class="p-navbar__menu-list-link mx-auto">
+          <router-link
+            :to="{ name: link.slug }"
+            class="p-navbar__menu-list-link mx-auto"
+          >
             <ElIcon>
-              <component :is="`Icon${toUpper(link.slug)}`"/>
+              <component :is="`Icon${toUpper(link.slug)}`" />
               <ElCount v-if="link.slug === 'chat'">
                 12
               </ElCount>
@@ -28,7 +31,10 @@
     <div class="p-navbar__footer">
       <ul class="p-navbar__menu-list">
         <li class="p-navbar__menu-list-item">
-          <router-link :to="{name: 'settings'}" class="p-navbar__menu-list-link mx-auto">
+          <router-link
+            :to="{ name: 'settings' }"
+            class="p-navbar__menu-list-link mx-auto"
+          >
             <ElIcon>
               <IconSettings />
             </ElIcon>
@@ -36,7 +42,10 @@
         </li>
 
         <li class="p-navbar__menu-list-item">
-          <button @click.prevent="() => {}" class="p-navbar__menu-list-link mx-auto">
+          <button
+            @click.prevent="() => {}"
+            class="p-navbar__menu-list-link mx-auto"
+          >
             <ElIcon>
               <IconLogout />
             </ElIcon>
@@ -100,6 +109,8 @@ export default {
   background-color: $color-dark;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 0px 16px rgba(24, 31, 46, 0.28);
+  z-index: 10;
 
   > * {
     border-bottom: 1px solid rgba(#fff, 0.1);
@@ -159,5 +170,5 @@ export default {
     background-color: $color-dark-2;
     padding: px-to-rem(25px) 0;
   }
-}  
+}
 </style>

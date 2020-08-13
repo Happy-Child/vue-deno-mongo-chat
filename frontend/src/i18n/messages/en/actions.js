@@ -1,5 +1,6 @@
 export default {
   registration: "Registration",
   login: "Login",
-  confirm: "Confirm"
+  confirm: "Confirm",
+  select_chat: "Select chat"
 };

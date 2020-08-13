@@ -1,5 +1,6 @@
 export default {
   registration: "Регистрация",
   login: "Вход",
-  confirm: "Подтвердить"
+  confirm: "Подтвердить",
+  select_chat: "Выберете чат"
 };

@@ -13,17 +13,17 @@ export default {
   components: {},
 
   props: {
-    prop: String,
+    prop: String
   },
 
   data() {
-    return {}
+    return {};
   },
 
   methods: {},
 
-  computed: {},
-}
+  computed: {}
+};
 </script>
 
 <style lang="scss">

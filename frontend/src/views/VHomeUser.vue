@@ -1,15 +1,19 @@
 <template>
-  <TAuthPage> </TAuthPage>
+  <TAuthPage class="page-home-user">
+    <PUsersList />
+  </TAuthPage>
 </template>
 
 <script>
 import TAuthPage from "@/components/03-templates/TAuthPage";
+import PUsersList from "../components/02-patterns/PUsersList";
 
 export default {
   name: "VHomeUser",
 
   components: {
-    TAuthPage
+    TAuthPage,
+    PUsersList
   },
 
   props: {
