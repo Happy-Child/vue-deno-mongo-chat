@@ -1,5 +1,5 @@
 <template>
-  <div class="p-user-list">
+  <div class="p-user-list" ref="list" :style="{ width: resultWidth + 'px' }">
     <div class="p-user-list__search">
       <label class="p-user-list__search-field">
         <ElIcon>
@@ -30,6 +30,10 @@
         />
       </router-link>
     </nav>
+
+    <div class="p-user-list__resize">
+      <span class="p-user-list__resize-button" @mousedown="onMousedown"></span>
+    </div>
   </div>
 </template>
 
@@ -52,10 +56,47 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      resultWidth: null,
+      immediateWidth: null,
+      navbarWidth: 100,
+      widthBreakpoint: {
+        min: 300,
+        max: null
+      }
+    };
   },
 
-  methods: {},
+  methods: {
+    removeResize() {
+      if (window.localStorage) {
+        window.localStorage.setItem(
+          "usersListWidth",
+          JSON.stringify(this.resultWidth)
+        );
+      }
+      document.removeEventListener("mousemove", this.startResize);
+      document.removeEventListener("mouseup", this.removeResize);
+    },
+
+    startResize({ clientX }) {
+      this.resultWidth =
+        this.immediateWidth +
+        (clientX - this.immediateWidth - this.navbarWidth);
+
+      if (this.resultWidth > this.widthBreakpoint.max) {
+        this.resultWidth = this.widthBreakpoint.max;
+      } else if (this.resultWidth < this.widthBreakpoint.min) {
+        this.resultWidth = this.widthBreakpoint.min;
+      }
+    },
+
+    onMousedown() {
+      this.immediateWidth = this.$refs.list.offsetWidth;
+      document.addEventListener("mousemove", this.startResize);
+      document.addEventListener("mouseup", this.removeResize);
+    }
+  },
 
   computed: {
     usersTotalList() {
@@ -67,7 +108,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: false,
+            viewed: false
           }
         },
         {
@@ -78,7 +119,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: true,
+            viewed: true
           }
         },
         {
@@ -87,7 +128,7 @@ export default {
             "https://otvet.imgsmail.ru/download/254281377_910c5ed2d69fc3e4d48488966db186a0_800.jpg",
           username: "Test username",
           lastMessage: null,
-          viewed: true,
+          viewed: true
         },
         {
           id: 1,
@@ -96,7 +137,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: false,
+            viewed: false
           }
         },
         {
@@ -107,7 +148,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: true,
+            viewed: true
           }
         },
         {
@@ -116,7 +157,7 @@ export default {
             "https://otvet.imgsmail.ru/download/254281377_910c5ed2d69fc3e4d48488966db186a0_800.jpg",
           username: "Test username",
           lastMessage: null,
-          viewed: true,
+          viewed: true
         },
         {
           id: 1,
@@ -125,7 +166,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: false,
+            viewed: false
           }
         },
         {
@@ -136,7 +177,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: true,
+            viewed: true
           }
         },
         {
@@ -145,7 +186,7 @@ export default {
             "https://otvet.imgsmail.ru/download/254281377_910c5ed2d69fc3e4d48488966db186a0_800.jpg",
           username: "Test username",
           lastMessage: null,
-          viewed: true,
+          viewed: true
         },
         {
           id: 1,
@@ -154,7 +195,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: false,
+            viewed: false
           }
         },
         {
@@ -165,7 +206,7 @@ export default {
           lastMessage: {
             text: "Some message",
             created_at: "9:20 am",
-            viewed: true,
+            viewed: true
           }
         },
         {
@@ -174,9 +215,31 @@ export default {
             "https://otvet.imgsmail.ru/download/254281377_910c5ed2d69fc3e4d48488966db186a0_800.jpg",
           username: "Test username",
           lastMessage: null,
-          viewed: true,
+          viewed: true
         }
       ];
+    }
+  },
+
+  mounted() {
+    const PAuthPageContent = document.querySelector(".t-auth-page__content");
+    if (PAuthPageContent) {
+      this.widthBreakpoint.max = PAuthPageContent.offsetWidth / 2;
+    }
+
+    const PNavbar = document.querySelector(".p-navbar");
+    if (PNavbar) {
+      this.navbarWidth = PNavbar.offsetWidth;
+    }
+
+    if (window.localStorage) {
+      this.resultWidth = window.localStorage.getItem("usersListWidth");
+
+      if (this.resultWidth > this.widthBreakpoint.max) {
+        this.resultWidth = this.widthBreakpoint.max;
+      } else if (this.resultWidth < this.widthBreakpoint.min) {
+        this.resultWidth = this.widthBreakpoint.min;
+      }
     }
   }
 };
@@ -190,6 +253,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  position: relative;
 
   &__search {
     min-height: 100px;
@@ -245,7 +309,11 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
         z-index: 0;
         opacity: 0;
         transition: inherit;
@@ -272,6 +340,35 @@ export default {
       &:hover:before {
         opacity: 1;
       }
+    }
+  }
+
+  &__resize {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, 0);
+    width: 15px;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      #{$block}__resize {
+        &-button {
+          opacity: 1;
+        }
+      }
+    }
+
+    &-button {
+      height: 100%;
+      width: 3px;
+      background-color: rgba($color-red, 0.6);
+      cursor: col-resize;
+      opacity: 0;
     }
   }
 }
