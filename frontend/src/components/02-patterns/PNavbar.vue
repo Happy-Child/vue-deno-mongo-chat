@@ -104,6 +104,7 @@ export default {
 <style lang="scss">
 .p-navbar {
   $block: &;
+  @include set-overflow-y-scroll();
   flex-shrink: 0;
   width: 100px;
   background-color: $color-dark;

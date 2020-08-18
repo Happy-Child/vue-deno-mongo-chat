@@ -4,9 +4,11 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
+import Breakpoints from "./plugins/Breakpoints";
 import VueJSModal from "vue-js-modal";
 import Globals from "./mixins/Globals";
 
+Vue.use(Breakpoints);
 Vue.use(VueJSModal, {});
 Vue.mixin(Globals);
 

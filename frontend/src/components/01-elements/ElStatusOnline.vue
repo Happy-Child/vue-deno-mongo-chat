@@ -30,5 +30,10 @@ export default {
   border: 1.5px solid #fff;
   border-radius: 100px;
   z-index: 1;
+
+  @include media-max(sm) {
+    width: 12px;
+    height: 12px;
+  }
 }
 </style>

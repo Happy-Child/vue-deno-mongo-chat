@@ -1,6 +1,6 @@
 <template>
   <div class="p-user-list" ref="list" :style="{ width: resultWidth + 'px' }">
-    <div class="p-user-list__search">
+    <div v-if="!$breakpoints.isMaxLG" class="p-user-list__search">
       <label class="p-user-list__search-field">
         <ElIcon>
           <IconSearch />
@@ -31,7 +31,7 @@
       </router-link>
     </nav>
 
-    <div class="p-user-list__resize">
+    <div v-if="!$breakpoints.isMaxLG" class="p-user-list__resize">
       <span class="p-user-list__resize-button" @mousedown="onMousedown"></span>
     </div>
   </div>
@@ -222,23 +222,25 @@ export default {
   },
 
   mounted() {
-    const PAuthPageContent = document.querySelector(".t-auth-page__content");
-    if (PAuthPageContent) {
-      this.widthBreakpoint.max = PAuthPageContent.offsetWidth / 2;
-    }
+    if (!this.$breakpoints.isMaxLG) {
+      const PAuthPageContent = document.querySelector(".t-auth-page__content");
+      if (PAuthPageContent) {
+        this.widthBreakpoint.max = PAuthPageContent.offsetWidth / 2;
+      }
 
-    const PNavbar = document.querySelector(".p-navbar");
-    if (PNavbar) {
-      this.navbarWidth = PNavbar.offsetWidth;
-    }
+      const PNavbar = document.querySelector(".p-navbar");
+      if (PNavbar) {
+        this.navbarWidth = PNavbar.offsetWidth;
+      }
 
-    if (window.localStorage) {
-      this.resultWidth = window.localStorage.getItem("usersListWidth");
+      if (window.localStorage) {
+        this.resultWidth = window.localStorage.getItem("usersListWidth");
 
-      if (this.resultWidth > this.widthBreakpoint.max) {
-        this.resultWidth = this.widthBreakpoint.max;
-      } else if (this.resultWidth < this.widthBreakpoint.min) {
-        this.resultWidth = this.widthBreakpoint.min;
+        if (this.resultWidth > this.widthBreakpoint.max) {
+          this.resultWidth = this.widthBreakpoint.max;
+        } else if (this.resultWidth < this.widthBreakpoint.min) {
+          this.resultWidth = this.widthBreakpoint.min;
+        }
       }
     }
   }
@@ -248,12 +250,17 @@ export default {
 <style lang="scss">
 .p-user-list {
   $block: &;
+  max-width: 100%;
   width: 520px;
   background-color: $color-gray;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   position: relative;
+
+  @include media-max(lg) {
+    width: 100%;
+  }
 
   &__search {
     min-height: 100px;
@@ -302,6 +309,10 @@ export default {
       position: relative;
       transition: $transition-default all ease;
 
+      @include media-max(sm) {
+        padding: px-to-rem(16px);
+      }
+
       &:before {
         content: "";
         position: absolute;
@@ -329,6 +340,10 @@ export default {
         height: 1px;
         background-color: rgba(#000, 0.12);
         z-index: 1;
+
+        @include media-max(sm) {
+          width: calc(100% - 32px);
+        }
       }
 
       > * {

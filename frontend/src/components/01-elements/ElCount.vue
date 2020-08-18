@@ -37,9 +37,18 @@ export default {
   height: 22px;
   color: #fff;
 
+  @include media-max(sm) {
+    width: 18px;
+    height: 18px;
+  }
+
   &__text {
     color: inherit;
     font-size: 13px;
+
+    @include media-max(sm) {
+      font-size: 12px;
+    }
   }
 }
 </style>

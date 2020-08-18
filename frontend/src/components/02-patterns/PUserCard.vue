@@ -86,11 +86,20 @@ export default {
   display: flex;
   align-items: center;
 
+  * {
+    user-select: none;
+  }
+
   &__wrap-image {
     width: 60px;
     margin-right: 16px;
     flex-shrink: 0;
     position: relative;
+
+    @include media-max(sm) {
+      width: 50px;
+      margin-right: 14px;
+    }
 
     .el-count,
     .el-status-online {
@@ -111,11 +120,19 @@ export default {
   &__content {
     width: calc(100% - 60px - 16px);
 
+    @include media-max(sm) {
+      width: calc(100% - 50px - 14px);
+    }
+
     &-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 2px;
+
+      @include media-max(sm) {
+        margin-bottom: 4px;
+      }
 
       &:only-child {
         margin-bottom: 0;
@@ -128,17 +145,30 @@ export default {
     padding-right: 10px;
     font-size: 18px;
     font-family: $font-bold;
+
+    @include media-max(sm) {
+      font-size: 14px;
+    }
   }
 
   &__time {
     flex-shrink: 0;
     color: $color-gray-2;
+
+    @include media-max(sm) {
+      font-size: 14px;
+    }
   }
 
   &__message {
     @include ellipsis();
     color: $color-gray-3;
     min-height: 26px;
+
+    @include media-max(sm) {
+      font-size: 14px;
+      min-height: 20px;
+    }
 
     &_unviewed {
       color: $color-red;

@@ -16,6 +16,11 @@
   border-radius: 100px;
   background-color: $color-gray;
 
+  @include media-max(sm) {
+    width: 48px;
+    height: 22px;
+  }
+
   &__item {
     width: 5px;
     height: 5px;
@@ -24,6 +29,12 @@
     position: absolute;
     top: calc(50% - 2.5px);
     animation: typingBounce 0.3s ease infinite alternate;
+
+    @include media-max(sm) {
+      width: 4px;
+      height: 4px;
+      top: calc(50% - 2px);
+    }
 
     &:nth-child(1) {
       left: 12px;
